@@ -1,5 +1,6 @@
 package functionalInterface;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class _Consumer {
@@ -11,7 +12,9 @@ public class _Consumer {
 
         //Declarative approach
         Customer customerConsumer = new Customer("Sandushi", "+94710000977");
+
         greedCustomerConsumer.accept(customerConsumer);
+        greedCustomerBiConsumer.accept(customerConsumer, false);
 
     }
 
@@ -27,6 +30,12 @@ public class _Consumer {
             System.out.println("Hello " + customer.customerName +
                     ", thank for registering phone number " +
                     customer.customerPhoneNumber);
+
+    static BiConsumer<Customer, Boolean> greedCustomerBiConsumer = (customer, showPhoneNumber) ->
+            System.out.println("Hello " + customer.customerName +
+                    ", thank for registering phone number " +
+                    (showPhoneNumber ? customer.customerPhoneNumber: "+94*********") );
+
 
     static class Customer{
         private final String customerName;
